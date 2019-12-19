@@ -34,15 +34,16 @@ testing2 <- testing[, which(nacell2==0)]
 
 # The time related variables "raw_timestamp_part_1, raw_timestamp_part_2 and cvtd_timestamp" are removed
 # as the focus is rather on the variables that have an effect on the classe variable. The index variable, X, 
-# is also not needed and therefore removed:
+# new_window and num_window are also not needed and therefore removed:
 
-training3 <- select(training2,-c("X", "raw_timestamp_part_1", "raw_timestamp_part_2", "cvtd_timestamp"))
-testing3 <- select(testing2,-c("X", "raw_timestamp_part_1", "raw_timestamp_part_2", "cvtd_timestamp"))
+training3 <- select(training2,-c("X", "new_window", "num_window", "raw_timestamp_part_1", "raw_timestamp_part_2", "cvtd_timestamp"))
+testing3 <- select(testing2,-c("X", "new_window", "num_window", "raw_timestamp_part_1", "raw_timestamp_part_2", "cvtd_timestamp"))
 
 # Also, variables with very little variability are removed:
-novar <- nearZeroVar(training3)
-trainining3 <- training3[-novar]
-testing3 <- testing3[-novar]
+# novar <- nearZeroVar(training3)
+# novar2 <- nearZeroVar(testing3)
+# trainining3 <- training3[-novar]
+# testing3 <- testing3[-novar2]
 
 # Estimation and Prediction:
 
@@ -72,4 +73,6 @@ fancyRpartPlot(model_tree)
 # The accuracy of the random forest is 99.7 % while that of decision tree is 72.8%. Therefore, the
 # former can now be used to predict classe using the test sample. 
 
-model_rf2 <- randomForest(classe ~ ., data=training3)
+model_rf2 <- randomForest(classe ~ ., data= training3)
+#pred_rf2 <- predict(model_rf2, newdata = testing3)
+

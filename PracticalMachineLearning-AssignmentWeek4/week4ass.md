@@ -50,13 +50,13 @@ for (i in 1:testcol){
 testing2 <- testing[, which(nacell2==0)]
 ```
 
-The time related variables "raw_timestamp_part_1, raw_timestamp_part_2 and cvtd_timestamp" are removed as the focus is rather on the variables that have an effect on the classe variable. The index variable, X, is also not needed and therefore removed:
+The time related variables "raw_timestamp_part_1, raw_timestamp_part_2 and cvtd_timestamp" are removed as the focus is rather on the variables that have an effect on the classe variable. The index variable, X, new_window and num_window are also not needed and therefore removed:
 
 
 ```r
 library(dplyr)
-training3 <- select(training2,-c("X", "raw_timestamp_part_1", "raw_timestamp_part_2", "cvtd_timestamp"))
-testing3 <- select(testing2,-c("X", "raw_timestamp_part_1", "raw_timestamp_part_2", "cvtd_timestamp"))
+training3 <- select(training2,-c("X", "new_window", "num_window", "raw_timestamp_part_1", "raw_timestamp_part_2", "cvtd_timestamp"))
+testing3 <- select(testing2,-c("X", "new_window", "num_window", "raw_timestamp_part_1", "raw_timestamp_part_2", "cvtd_timestamp"))
 ```
 
 Additionally, variables with very little variability are removed:
@@ -92,7 +92,7 @@ print(accuracy_rf)
 
 ```
 ##  Accuracy 
-## 0.9973491
+## 0.9961256
 ```
  
 ### Decision tree:
@@ -106,7 +106,7 @@ print(accuracy_tree)
 
 ```
 ##  Accuracy 
-## 0.7281811
+## 0.7514274
 ```
 
 
@@ -114,9 +114,13 @@ print(accuracy_tree)
 fancyRpartPlot(model_tree)
 ```
 
+```
+## Warning: labs do not fit even at cex 0.15, there may be some overplotting
+```
+
 ![](week4ass_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
 
-The accuracy of the random forest is about 99.7 % while that of decision tree is 72.8 %. Therefore, the former approach with a better accuracy can now be used to predict classe using the testing sample. Moreover, the expected out-of-sample error, which corresponds to 1-accuracy from the cross validation data, of the chosen model (random forest) is about 1-99.7%=0.3%.
+The accuracy of the random forest is about 99.6 % while that of decision tree is 75.1 %. Therefore, the former approach with a better accuracy can now be used to predict classe using the testing sample. Moreover, the expected out-of-sample error, which corresponds to 1-accuracy from the cross validation data, of the chosen model (random forest) is about 1-99.6%=0.4%.
 
 
 ```r
