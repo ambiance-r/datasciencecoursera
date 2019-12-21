@@ -1,0 +1,52 @@
+---
+title: "Some Royal Parks of London"
+author: "21 December 2019"
+always_allow_html: yes
+---
+
+```{r echo=FALSE}
+library(leaflet)
+setwd("C:/Users/user/datasciencecoursera/DevelopingDataProducts/week2assignment")
+```
+
+```{r, eval=FALSE, echo=FALSE}
+hopkinsIcon <- makeIcon(
+  iconUrl = "https://i.pinimg.com/originals/9b/c2/67/9bc2674c51e08b99d6ed65204c72b80c.jpg",
+  iconWidth = 31*215/230, iconHeight = 31,
+  iconAnchorX = 31*215/230/2, iconAnchorY = 16
+)
+hopkinsLatLong <- data.frame(
+  lat = c(51.53023185, 51.5074889, 51.50445065, 51.438511649999995),
+  lng = c(-0.15393249943541745, -0.1622053801825995, -0.1437213341799127,-0.2747350347565655))
+hopkinsSites <- c(
+  "<a href='https://www.royalparks.org.uk/parks/the-regents-park'>Regent's Park</a>",
+  "<a href='https://www.royalparks.org.uk/parks/hyde-park'>Hyde Park</a>",
+  "<a href='https://www.royalparks.org.uk/parks/green-park'>Green Park</a>",
+  "<a href='https://www.royalparks.org.uk/parks/richmond-park'>Richmond Park</a>"
+)
+hopkinsLatLong %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(icon = hopkinsIcon, popup = hopkinsSites)
+```
+
+```{r, echo=FALSE}
+hopkinsIcon <- makeIcon(
+  iconUrl = "https://i.pinimg.com/originals/9b/c2/67/9bc2674c51e08b99d6ed65204c72b80c.jpg",
+  iconWidth = 31*215/230, iconHeight = 31,
+  iconAnchorX = 31*215/230/2, iconAnchorY = 16
+)
+hopkinsLatLong <- data.frame(
+  lat = c(51.53023185, 51.5074889, 51.50445065, 51.438511649999995),
+  lng = c(-0.15393249943541745, -0.1622053801825995, -0.1437213341799127,-0.2747350347565655))
+hopkinsSites <- c(
+  "<a href='https://www.royalparks.org.uk/parks/the-regents-park'>Regent's Park</a>",
+  "<a href='https://www.royalparks.org.uk/parks/hyde-park'>Hyde Park</a>",
+  "<a href='https://www.royalparks.org.uk/parks/green-park'>Green Park</a>",
+  "<a href='https://www.royalparks.org.uk/parks/richmond-park'>Richmond Park</a>"
+)
+hopkinsLatLong %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(icon = hopkinsIcon, popup = hopkinsSites)
+```
